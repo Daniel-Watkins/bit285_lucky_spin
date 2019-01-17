@@ -16,6 +16,8 @@ namespace LuckySpin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddTransient<Models.Spin>();
+            services.AddTransient<Models.TextTransformService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,7 +26,7 @@ namespace LuckySpin
             app.UseMvc(routes =>
                 {
                     routes.MapRoute("Default",
-                        "{controller=Spinner}/{action=Index}/{luck=7:range(1,9)}");
+                        "{controller=Spinner}/{action=Index}/{luck:range(1,9)?}");
                 }
             );
 
